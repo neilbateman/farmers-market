@@ -8,13 +8,21 @@ export class App extends React.Component {
     super(props);
     this.state = {
       currentDay: 'Monday'
-    }
+    };
+    this.handleDayClick = this.handleDayClick.bind(this);
+  }
+
+  handleDayClick(newDay){
+    this.setState({currentDay: newDay});
+    // eslint-disable-next-line no-console
+    console.log(this.state.currentDay);
+    
   }
   render() {
     return(
       <div>
-        <Navbar />
-        <Grid currentDay={this.state.currentDay}/>
+        <Navbar onDayClick={this.handleDayClick}/>
+        <Grid currentDay={this.state.currentDay} />
       </div>
     );
   }

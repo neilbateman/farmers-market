@@ -18,15 +18,6 @@ export default class ScheduleFeed extends React.Component {
     return this.state.Schedule.filter(item => item.day === this.props.currentDay);
   }
 
-
-  componentDidMount() {
-    console.log(this.props.currentDay);
-    
-  }
-
-
-
-
   render(){
     return (
       <div className="times">

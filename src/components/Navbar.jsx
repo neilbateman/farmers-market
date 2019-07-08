@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,7 +24,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
+  
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -30,10 +33,12 @@ export default function ButtonAppBar() {
     setAnchorEl(event.currentTarget);
   }
 
-  function handleClose() {
+  function handleClose(newDay) {
     setAnchorEl(null);
+    // eslint-disable-next-line react/prop-types
+    props.onDayClick(newDay);
   }
-
+  
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -42,20 +47,20 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose} value="Monday">Monday</MenuItem>
-        <MenuItem onClick={handleClose} value="Tuesday">Tuesday</MenuItem>
-        <MenuItem onClick={handleClose} value="Wednesday">Wednesday</MenuItem>
-        <MenuItem onClick={handleClose} value="Thursday">Thursday</MenuItem>
-        <MenuItem onClick={handleClose} value="Friday">Friday</MenuItem>
-        <MenuItem onClick={handleClose} value="Saturday">Saturday</MenuItem>
-        <MenuItem onClick={handleClose} value="Sunday">Sunday</MenuItem>
-      </Menu>
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={() => handleClose('Monday')}>Monday</MenuItem>
+            <MenuItem onClick={() => handleClose('Tuesday')}>Tuesday</MenuItem>
+            <MenuItem onClick={() => handleClose('Wednesday')}>Wednesday</MenuItem>
+            <MenuItem onClick={() => handleClose('Thursday')}>Thursday</MenuItem>
+            <MenuItem onClick={() => handleClose('Friday')}>Friday</MenuItem>
+            <MenuItem onClick={() => handleClose('Saturday')}>Saturday</MenuItem>
+            <MenuItem onClick={() => handleClose('Sunday')}>Sunday</MenuItem>
+          </Menu>
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
@@ -65,3 +70,4 @@ export default function ButtonAppBar() {
     </div>
   );
 }
+// ref={(MenuItem) => {this.selectedDay= MenuItem;}}

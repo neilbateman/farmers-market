@@ -12,7 +12,7 @@ export default class  AvailableProduce extends React.Component {
     this.state = {
       MasterProduceList,
     };
-  };
+  }
 
   render() {
     return (

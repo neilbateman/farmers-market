@@ -24,24 +24,24 @@ function Produce(props){
   const classes = useStyles();
   return (
     <ExpansionPanel>
-    <ExpansionPanelSummary
-      expandIcon={<ExpandMoreIcon />}
-      aria-controls="panel1a-content"
-      id="panel1a-header"
-    >
-      <Typography className={classes.heading}>{props.month}</Typography>
-    </ExpansionPanelSummary>
-    <ExpansionPanelDetails>
-      <ul>
-        {props.selection.map((item, index)=>
-          <ProduceItem name={item}
+      <ExpansionPanelSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
+        <Typography className={classes.heading}>{props.month}</Typography>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails>
+        <ul>
+          {props.selection.map((item, index)=>
+            <ProduceItem name={item}
               key={index}
             />
           )}
 
-      </ul>
-    </ExpansionPanelDetails>
-  </ExpansionPanel>
+        </ul>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
   );
 }
 Produce.propTypes = {
