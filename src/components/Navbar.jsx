@@ -6,6 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,14 +24,38 @@ const useStyles = makeStyles(theme => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  function handleClick(event) {
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleClose() {
+    setAnchorEl(null);
+  }
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
+          <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={handleClose} value="Monday">Monday</MenuItem>
+        <MenuItem onClick={handleClose} value="Tuesday">Tuesday</MenuItem>
+        <MenuItem onClick={handleClose} value="Wednesday">Wednesday</MenuItem>
+        <MenuItem onClick={handleClose} value="Thursday">Thursday</MenuItem>
+        <MenuItem onClick={handleClose} value="Friday">Friday</MenuItem>
+        <MenuItem onClick={handleClose} value="Saturday">Saturday</MenuItem>
+        <MenuItem onClick={handleClose} value="Sunday">Sunday</MenuItem>
+      </Menu>
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
